@@ -1,6 +1,9 @@
 <template>
     <ul>
-        <li v-for="todoList in todoLists" v-bind:key="todoList">{{ todoList }}</li>
+        <li v-for="(todoList, index) in todoLists" v-bind:key="todoList">
+            {{ todoList }}
+            <button v-on:click="todoItem(todoList, index)">삭제</button>
+        </li>
     </ul>
 </template>
 
@@ -21,8 +24,13 @@ export default {
                 }
             }
         }
+    },
+    methods: {
+        todoItem: function(todoList, index){
+            localStorage.removeItem(todoList);
+            this.todoLists.splice(index, 1);
+        }
     }
-    
 }
 </script>
 
