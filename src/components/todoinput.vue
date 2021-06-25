@@ -15,11 +15,17 @@ export default {
     // 스토리지에 key value 담기
     methods: {
         todoList: function() {
-            localStorage.setItem(this.message, this.message);
+            var value = this.message && this.message.trim();
+            // 상위 컴포넌트로 이벤트와 인풋에서 타이핑한 값(value)를 보낸다.
+            this.$emit('todoList', value);
+
             this.clearVal();
         },
         clearVal: function() {
             this.message = ''
+        },
+        showAlert: function() {
+            alert("event")
         }
     }
 }
