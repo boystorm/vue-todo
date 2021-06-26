@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input v-model="message" >
+        <input v-model="message" v-on:keyup.enter="todoList">
         <button type="button" v-on:click="todoList">추가</button>
     </div>    
 </template>
@@ -17,7 +17,11 @@ export default {
         todoList: function() {
             var value = this.message && this.message.trim();
             // 상위 컴포넌트로 이벤트와 인풋에서 타이핑한 값(value)를 보낸다.
-            this.$emit('todoList', value);
+            if(value != ''){
+                this.$emit('todoList', value);
+            }else{
+                alert("할일을 입력해 주세요")
+            }
 
             this.clearVal();
         },

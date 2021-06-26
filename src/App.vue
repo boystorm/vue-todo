@@ -31,7 +31,7 @@ export default {
       }
       localStorage.setItem(message, message);
       this.todoLists.push(message);
-    }
+    },
   },
   created() {
       if(localStorage.length > 0){
