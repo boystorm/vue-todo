@@ -3,7 +3,7 @@
     <todoheader></todoheader>
     <todoinput v-on:todoList="todoList"></todoinput>
     <todolist v-bind:propsdata="todoLists"></todolist>
-    <todofooter></todofooter>
+    <todofooter v-on:clearAll="clearAll"></todofooter>
   </div>
 </template>
 
@@ -32,6 +32,9 @@ export default {
       localStorage.setItem(message, message);
       this.todoLists.push(message);
     },
+    clearAll() {
+      this.todoLists = [];
+    }
   },
   created() {
       if(localStorage.length > 0){
