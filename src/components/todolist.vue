@@ -17,7 +17,7 @@
             <h3 slot="header">경고</h3>
             <span slot="footer" v-on:click="showModal2">
                 할일이 존재합니다.
-                <i class="close-modal-btn fas fa-times"></i>
+                <i class="close-modal-btn fas fa-times" ></i>
             </span>
         </modal>
     </ul>
