@@ -25,7 +25,9 @@ export default {
       // 로컬스토리지에 담는 로직
       for(let i = 0; i <= localStorage.length; i++){
         if(localStorage.key(i) == message){
+
           alert("할일 내용이 같습니다"); 
+
           return false;
         }
       }

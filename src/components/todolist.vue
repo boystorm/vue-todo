@@ -12,6 +12,14 @@
                     <i class="far fa-trash-alt"></i>
                 </span>
             </div>
+
+            <modal v-if="showModal" >
+                <h3 slot="header">경고</h3>
+                <span slot="footer" @click="showModal = false">
+                    할일을 입력하세요
+                    <i class="close-modal-btn fas fa-times"></i>
+                </span>
+            </modal>
         </li>
     </ul>
 </template>

@@ -4,14 +4,27 @@
         <span class="add-container" v-on:click="todoList">
             <i class="add-btn fas fa-plus"></i>
         </span>
+
+        <modal v-if="showModal" >
+            <h3 slot="header">경고</h3>
+            <span slot="footer" @click="showModal = false">
+                할일을 입력하세요
+                <i class="close-modal-btn fas fa-times"></i>
+            </span>
+        </modal>
     </div>    
 </template>
 
 <script>
-export default { 
+import Modal from './common/Modal.vue';
+export default {
+    components: { 
+      Modal
+    }, 
     data() {
         return{
-            message: ''
+            message: '',
+            showModal: false
         }
     },
     // 스토리지에 key value 담기
@@ -22,7 +35,7 @@ export default {
             if(value != ''){
                 this.$emit('todoList', value);
             }else{
-                alert("할일을 입력해 주세요")
+                this.showModal = !this.showModal
             }
 
             this.clearVal();
