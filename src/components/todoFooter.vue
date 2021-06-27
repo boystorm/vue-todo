@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button v-on:click="clearAll">전체 삭제</button>
+    <div class="clear-all-container">
+        <span class="clear-all-btn shadow" type="button" v-on:click="clearAll">전체 삭제</span>
     </div>
 </template>
 
@@ -16,14 +16,15 @@ export default{
 </script>
 
 <style scoped>
-div {
-    display: flex;
-    margin:0 auto;
+.clear-all-container {
+    width: 8.5rem;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0 auto;
 }
-button {
-    background-color: #ddd;
-    border: none;
-    color: #333
+.clear-all-btn{
+    color: #e20303;   
 }
-
 </style>

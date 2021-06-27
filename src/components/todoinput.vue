@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <input v-model="message" v-on:keyup.enter="todoList">
-        <button type="button" v-on:click="todoList">추가</button>
+    <div class="shadow input-box">
+        <input type="text" v-model="message" v-on:keyup.enter="todoList">
+        <span class="add-container" v-on:click="todoList">
+            <i class="add-btn fas fa-plus"></i>
+        </span>
     </div>    
 </template>
 
@@ -37,14 +39,27 @@ export default {
 
 <style scoped>
 input{
-    border: 1px solid #999;
     width: 95%;
     height: 35px;
     border-radius: 5px;
-}
-button {
-    height: 35px;
-    background: #ddd;
     border: none;
+}
+input:focus {
+    outline: none;
+}
+.input-box{
+    background: white;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+}
+.add-container{
+    float: right;
+    display:block;
+    width: 3rem;
+    background: #333;
+}
+.add-btn{
+    color: white;
 }
 </style>

@@ -9,7 +9,7 @@ export default {
   name: 'todoheader',
   data () {
     return{
-        message: "Hello Todo It!",
+        message: "Todo List",
         isActive: true
     }
   }
@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style scoped>
+
 .todo-title {
     display: flex;
     justify-content: center;
