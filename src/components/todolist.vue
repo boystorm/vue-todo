@@ -12,27 +12,33 @@
                     <i class="far fa-trash-alt"></i>
                 </span>
             </div>
-
-            <modal v-if="showModal" >
-                <h3 slot="header">경고</h3>
-                <span slot="footer" @click="showModal = false">
-                    할일을 입력하세요
-                    <i class="close-modal-btn fas fa-times"></i>
-                </span>
-            </modal>
         </li>
+        <modal v-if="showModal" >
+            <h3 slot="header">경고</h3>
+            <span slot="footer" v-on:click="showModal2">
+                할일이 존재합니다.
+                <i class="close-modal-btn fas fa-times"></i>
+            </span>
+        </modal>
     </ul>
 </template>
 
 <script>
 // ul li에 data 스토리지에 있는 데이터 넣어주기
+import Modal from './common/Modal.vue';
 
 export default { 
-    props: ['propsdata'],
+    props: ['propsdata','showModal'],
+    components: {
+        Modal
+    },
     methods: {
         todoItem: function(todoList, index){
             localStorage.removeItem(todoList);
             this.propsdata.splice(index, 1);
+        },
+        showModal2: function(){
+            this.$emit('showModal2')
         }
     }
 }

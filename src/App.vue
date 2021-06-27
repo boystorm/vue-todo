@@ -2,7 +2,7 @@
   <div id="app">
     <todoheader></todoheader>
     <todoinput v-on:todoList="todoList"></todoinput>
-    <todolist v-bind:propsdata="todoLists"></todolist>
+    <todolist v-bind:propsdata="todoLists" v-bind:showModal="showModal" v-on:showModal2="showModal2"></todolist>
     <todofooter v-on:clearAll="clearAll"></todofooter>
   </div>
 </template>
@@ -17,7 +17,8 @@ export default {
   // 할일을 상위 컴포넌트에서 작업 후 props로 전달
   data (){
     return {
-      todoLists: []
+      todoLists: [],
+      showModal: ''
     }
   },
   methods: {
@@ -25,10 +26,9 @@ export default {
       // 로컬스토리지에 담는 로직
       for(let i = 0; i <= localStorage.length; i++){
         if(localStorage.key(i) == message){
-
-          alert("할일 내용이 같습니다"); 
-
-          return false;
+          this.showModal = !this.showModal;
+          
+          return false
         }
       }
       localStorage.setItem(message, message);
@@ -36,6 +36,9 @@ export default {
     },
     clearAll() {
       this.todoLists = [];
+    },
+    showModal2() {
+      this.showModal = false;
     }
   },
   created() {
