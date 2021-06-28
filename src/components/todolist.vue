@@ -5,7 +5,7 @@
             {{ todoList }}
             
             <div class="crud-btn">
-                <span class="mod-btn" type="button">
+                <span class="mod-btn" type="button" v-on:click="todoModPop(todoList, index)">
                     <i class="fas fa-pencil-alt"></i>
                 </span>
                 <span class="remove-btn" type="button" v-on:click="todoItem(todoList, index)">
@@ -13,11 +13,23 @@
                 </span>
             </div>
         </li>
-        <modal v-if="showModal" >
+        <modal v-if="showModal">
             <h3 slot="header">경고</h3>
-            <span slot="footer" v-on:click="showModal2">
+            <span slot="footer" v-on:click="showModalExist">
                 할일이 존재합니다.
                 <i class="close-modal-btn fas fa-times" ></i>
+            </span>
+        </modal>
+        <modal v-if="showModalMod">
+            <h3 slot="header">수정</h3>
+            <span slot="body">
+                <input type="text" v-model="message">
+                <span class="update-btn" type="button" v-on:click="todoUpdate(message, number)">
+                    <i class="fas fa-pencil-alt"></i>
+                </span>
+            </span>
+            <span slot="footer" v-on:click="showModalClose">
+                <i class="close-modal-btn fas fa-times"></i>
             </span>
         </modal>
     </ul>
@@ -28,7 +40,7 @@
 import Modal from './common/Modal.vue';
 
 export default { 
-    props: ['propsdata','showModal'],
+    props: ['propsdata','showModal', 'showModalMod', 'message', 'number'],
     components: {
         Modal
     },
@@ -37,8 +49,20 @@ export default {
             localStorage.removeItem(todoList);
             this.propsdata.splice(index, 1);
         },
-        showModal2: function(){
-            this.$emit('showModal2')
+        todoModPop: function(todoList, index){
+            // 수정 버튼 클릭시 팝업창 오픈
+            this.$emit('todoModPop', todoList, index)
+        },
+        todoUpdate: function(message, number){
+            // 여기부터 시작 localStorage 변경, number 숫자로 값도 변경
+            console.log(message)
+            
+        },
+        showModalExist: function(){
+            this.$emit('showModalExist')
+        },
+        showModalClose: function(){
+            this.$emit('showModalClose')
         }
     }
 }

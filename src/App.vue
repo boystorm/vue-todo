@@ -2,7 +2,16 @@
   <div id="app">
     <todoheader></todoheader>
     <todoinput v-on:todoList="todoList"></todoinput>
-    <todolist v-bind:propsdata="todoLists" v-bind:showModal="showModal" v-on:showModal2="showModal2"></todolist>
+    <todolist 
+        v-bind:propsdata="todoLists" 
+        v-bind:showModal="showModal" 
+        v-bind:showModalMod="showModalMod" 
+        v-bind:message="message"
+        v-bind:number="number"
+        v-on:showModalExist="showModalExist" 
+        v-on:showModalClose="showModalClose"
+        v-on:todoModPop="todoModPop">
+    </todolist>
     <todofooter v-on:clearAll="clearAll"></todofooter>
   </div>
 </template>
@@ -18,7 +27,10 @@ export default {
   data (){
     return {
       todoLists: [],
-      showModal: ''
+      showModal: '',
+      showModalMod: '',
+      message: '',
+      number: ''
     }
   },
   methods: {
@@ -37,8 +49,16 @@ export default {
     clearAll() {
       this.todoLists = [];
     },
-    showModal2() {
+    showModalExist() {
       this.showModal = false;
+    },
+    showModalClose() {
+      this.showModalMod = false;
+    },
+    todoModPop(todoList, index) {
+        this.showModalMod = true;
+        this.message = todoList;
+        this.number = index;
     }
   },
   created() {
