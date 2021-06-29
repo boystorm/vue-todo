@@ -10,7 +10,8 @@
         v-bind:number="number"
         v-on:showModalExist="showModalExist" 
         v-on:showModalClose="showModalClose"
-        v-on:todoModPop="todoModPop">
+        v-on:todoModPop="todoModPop"
+        v-on:todoUpdate="todoUpdate">
     </todolist>
     <todofooter v-on:clearAll="clearAll"></todofooter>
   </div>
@@ -43,8 +44,9 @@ export default {
           return false
         }
       }
+      
       localStorage.setItem(message, message);
-      this.todoLists.push(message);
+      this.todoLists.push(localStorage.getItem(message));
     },
     clearAll() {
       this.todoLists = [];
@@ -61,15 +63,17 @@ export default {
         this.number = index;
     },
     todoUpdate(message, index) {
-        console.log(message);
-        //localStorage.setItem(this.message, this.message);
+        localStorage.setItem(localStorage.key(index), message);
+        this.todoLists.splice(index, 1, message);
+        this.showModalMod = false;
     }
   },
   created() {
       if(localStorage.length > 0){
           for(let i = 0; i < localStorage.length ; i++) {
               if((localStorage.key(i) != 'loglevel:webpack-dev-server') && (localStorage.key(i) != '')){
-                  this.todoLists.push(localStorage.key(i));
+                  let value = localStorage.getItem(localStorage.key(i))
+                  this.todoLists.push(value);
               }
           }
       }

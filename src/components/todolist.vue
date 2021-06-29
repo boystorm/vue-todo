@@ -24,7 +24,7 @@
             <h3 slot="header">수정</h3>
             <span slot="body">
                 <input type="text" v-model="valTodo">
-                <span class="update-btn" type="button" v-on:click="todoUpdate(message, number)">
+                <span class="update-btn" type="button" v-on:click="todoUpdate(valTodo, number)">
                     <i class="fas fa-pencil-alt"></i>
                 </span>
             </span>
