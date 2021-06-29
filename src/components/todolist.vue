@@ -23,7 +23,7 @@
         <modal v-if="showModalMod">
             <h3 slot="header">수정</h3>
             <span slot="body">
-                <input type="text" v-model="message">
+                <input type="text" v-model="valTodo">
                 <span class="update-btn" type="button" v-on:click="todoUpdate(message, number)">
                     <i class="fas fa-pencil-alt"></i>
                 </span>
@@ -41,6 +41,11 @@ import Modal from './common/Modal.vue';
 
 export default { 
     props: ['propsdata','showModal', 'showModalMod', 'message', 'number'],
+    data (){
+        return {
+            valTodo : ""
+        }
+    },
     components: {
         Modal
     },
@@ -51,11 +56,12 @@ export default {
         },
         todoModPop: function(todoList, index){
             // 수정 버튼 클릭시 팝업창 오픈
+            this.valTodo = todoList
             this.$emit('todoModPop', todoList, index)
         },
         todoUpdate: function(message, number){
             // 여기부터 시작 localStorage 변경, number 숫자로 값도 변경
-            console.log(message)
+            this.$emit('todoUpdate',message,number)
             
         },
         showModalExist: function(){

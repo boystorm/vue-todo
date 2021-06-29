@@ -42,9 +42,6 @@ export default {
         },
         clearVal: function() {
             this.message = ''
-        },
-        showAlert: function() {
-            alert("event")
         }
     }
 }

@@ -59,6 +59,10 @@ export default {
         this.showModalMod = true;
         this.message = todoList;
         this.number = index;
+    },
+    todoUpdate(message, index) {
+        console.log(message);
+        //localStorage.setItem(this.message, this.message);
     }
   },
   created() {
